@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@import "aos/dist/aos.css";
+@import "pdfjs-dist/web/pdf_viewer.css";
+
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Aurora drift animations */
+@keyframes gradientDriftRight {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes gradientDriftDiagonal {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+@keyframes gradientDriftLeft {
+  0% { background-position: 100% 50%; }
+  50% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+@keyframes gradientDriftVertical {
+  0% { background-position: 50% 0%; }
+  50% { background-position: 50% 100%; }
+  100% { background-position: 50% 0%; }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
