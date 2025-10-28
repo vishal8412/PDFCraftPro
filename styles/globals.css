@@ -1,11 +1,32 @@
 @import "tailwindcss";
 @import "aos/dist/aos.css";
-@import "pdfjs-dist/web/pdf_viewer.css";
+/* @import "pdfjs-dist/web/pdf_viewer.css"; */
 
 @tailwind utilities;
 
 html {
   scroll-behavior: smooth;
+}
+
+.pdf-page-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.pdf-page-container {
+  margin: 16px 0; 
+  padding: 8px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  display: inline-block;
+}
+
+.pdf-canvas {
+  display: block;
+  max-width: 100%;
+  height: auto !important;
 }
 
 /* Aurora drift animations */
@@ -39,3 +60,392 @@ html {
   100% { background-position: 0% 50%; }
 }
 
+@keyframes shine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* --- Custom Loader Overlay --- */
+.loader-overlay {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* === Branded Gradient Spinner === */
+.custom-spinner {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 4px solid transparent;
+  background:
+    linear-gradient(#0f141c, #0f141c) padding-box,
+    linear-gradient(135deg, #ff4d79, #ff9900, #ff4d79) border-box;
+  background-size: 200% 200%;
+  animation:
+    spin 1.2s linear infinite,
+    shimmerGradient 3s ease-in-out infinite;
+}
+
+/* Base spin rotation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Gradient shimmer motion */
+@keyframes shimmerGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ---- Custom Scrollbar Styling ---- */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #0d1117; /* track color */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #444c56;
+  border-radius: 6px;
+  border: 2px solid #0d1117;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #5a646e;
+}
+
+/* Firefox scrollbar */
+.custom-scrollbar {
+  scrollbar-color: #444c56 #0d1117;
+  scrollbar-width: thin;
+}
+
+/* --- Paper Texture Overlay --- */
+.paper-texture-overlay {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+  opacity: 0.08;
+  mix-blend-mode: overlay;
+  z-index: 1;
+}
+
+/* --- Soft Light Drift --- */
+.paper-light-shift {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 20% 30%,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.02),
+    transparent 80%
+  );
+  animation: lightDrift 6s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@keyframes lightDrift {
+  0% {
+    background-position: 0% 0%;
+    opacity: 0.08;
+  }
+  50% {
+    background-position: 100% 100%;
+    opacity: 0.14;
+  }
+  100% {
+    background-position: 50% 50%;
+    opacity: 0.09;
+  }
+}
+
+/* --- Surface hover styling --- */
+.pdf-page-surface:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 18px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+/* === Collapsible Panel Hover & Open State === */
+.collapsible-open {
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+.collapsible-open:hover {
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.08);
+}
+
+/* === Search Input Focus === */
+input:focus {
+  box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.3);
+}
+
+/* === Scrollbar Improvements === */
+/* --- Custom Scrollbar Styling --- */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #444c56;
+  border-radius: 6px;
+  border: 2px solid #0d1117;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #5a646e;
+}
+.custom-scrollbar {
+  scrollbar-color: #444c56 #0d1117;
+  scrollbar-width: thin;
+}
+
+/* 🌈 Gradient shimmer base */
+@keyframes gradient-move {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+
+/* 💫 Soft ambient glow */
+@keyframes soft-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(255, 154, 61, 0.3), 0 0 20px rgba(255, 107, 107, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(255, 154, 61, 0.5), 0 0 30px rgba(255, 107, 107, 0.35);
+  }
+}
+
+.animate-gradient-move {
+  background-size: 300% 300%;
+  animation-name: gradient-move;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.animate-soft-glow {
+  animation: soft-glow 4s ease-in-out infinite;
+}
+
+/* 🐢 Replace PDF - slower shimmer */
+.animate-gradient-move-slow {
+  background-size: 300% 300%;
+  animation: gradient-move 6s linear infinite;
+}
+
+/* ⚡ Upload PDF - faster shimmer */
+.animate-gradient-move-fast {
+  background-size: 300% 300%;
+  animation: gradient-move 3s linear infinite;
+}
+
+/* 🌟 Hover state — speed up animation */
+button:hover.animate-gradient-move {
+  animation-duration: 2.5s;
+  transform: scale(1.04);
+  filter: brightness(1.05);
+}
+
+/* Pause both shimmer and glow when mouse is pressed */
+button:active.animate-gradient-move,
+button:active.animate-soft-glow {
+  animation-play-state: paused;
+  transform: scale(0.98);
+}
+
+/* Transition smoothness for all states */
+/* === 🧠 Smart Color-Adaptive Reflection === */
+button {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dynamic reflection overlay */
+button::after {
+  content: "";
+  position: absolute;
+  top: -60%;
+  left: -120%;
+  width: 80%;
+  height: 220%;
+  transform: rotate(25deg);
+  pointer-events: none;
+
+  /* 🎨 Adaptive gradient blend — softly shifts hue */
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 25%,
+    rgba(255, 255, 255, 0.3) 45%,
+    rgba(0, 212, 179, 0.25) 55%,  /* aqua tint */
+    rgba(255, 154, 61, 0.3) 70%,  /* orange tint */
+    rgba(255, 255, 255, 0) 100%
+  );
+
+  background-size: 200% 200%;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  mix-blend-mode: screen;
+  animation: loopReflection 6.5s ease-in-out infinite;
+}
+
+/* Trigger bright adaptive reflection on hover */
+button:hover::after {
+  animation: moveReflection 1.5s ease-in-out forwards;
+}
+
+
+/* === Reflection animation === */
+
+/* Static reflection effect (on hover) */
+.reflection {
+  transform: translateX(-120%) rotate(25deg);
+  transition: opacity 0.4s ease;
+}
+
+/* Reflection moves across the button on hover */
+button:hover .reflection {
+  animation: moveReflection 1.6s ease-in-out forwards;
+}
+
+/* Reflection continuously loops (breathing shimmer) */
+button .reflection {
+  animation: loopReflection 6s ease-in-out infinite;
+  opacity: 0;
+}
+
+/* Smooth hover reflection movement */
+@keyframes moveReflection {
+  0% {
+    left: -120%;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  50% {
+    left: 40%;
+    opacity: 0.85;
+  }
+  100% {
+    left: 140%;
+    opacity: 0;
+  }
+}
+
+/* Soft looping shimmer — subtle ambient motion */
+@keyframes loopReflection {
+  0%, 94% {
+    left: -120%;
+    opacity: 0;
+  }
+  96% {
+    left: 30%;
+    opacity: 0.25;
+  }
+  100% {
+    left: 140%;
+    opacity: 0;
+  }
+}
+
+/* 🧊 Performance tuning for ultra-smooth motion */
+button::after {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradientFlow {
+  animation: gradientFlow 6s ease-in-out infinite;
+}
+
+@keyframes floatGlow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.6;
+    filter: blur(5px);
+  }
+  50% {
+    opacity: 0.9;
+    filter: blur(7px);
+  }
+}
+
+.animate-floatGlow {
+  animation: floatGlow 2.2s ease-in-out infinite;
+}
+
+.animate-pulseGlow {
+  animation: pulseGlow 1.8s ease-in-out infinite;
+}
+
+/* --- Ads Slow Shimmer Animation --- */
+@keyframes shimmerSlow {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.animate-shimmerSlow {
+  background-size: 200% 200%;
+  animation: shimmerSlow 8s linear infinite;
+}
+
+@keyframes neonBorder {
+  0%, 100% { box-shadow: 0 0 10px rgba(0, 212, 179, 0.4), inset 0 0 10px rgba(0, 212, 179, 0.2); }
+  50% { box-shadow: 0 0 25px rgba(255, 154, 61, 0.4), inset 0 0 25px rgba(255, 154, 61, 0.2); }
+}
+
+/* === ⚡ Momentum Light Shimmer (Reactive Glow System) === */
+#momentum-light {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  z-index: 5;
+  filter: blur(32px) brightness(1.2);
+  opacity: 0;
+  transition:
+    opacity 0.4s ease-out,
+    background 0.25s ease,
+    transform 0.25s ease,
+    filter 0.3s ease-in-out;
+  animation: shimmerFloat 10s ease-in-out infinite alternate;
+}
+
+@keyframes shimmerFloat {
+  0% {
+    transform: scale(1) translate(0px, 0px);
+  }
+  50% {
+    transform: scale(1.05) translate(8px, -8px);
+  }
+  100% {
+    transform: scale(1) translate(-6px, 6px);
+  }
+}

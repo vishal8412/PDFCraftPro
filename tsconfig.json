@@ -6,7 +6,10 @@
       "dom.iterable",
       "esnext"
     ],
-    "typeRoots": ["./node_modules/@types", "./pdfjs-dist.d.ts"],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/types"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -21,7 +24,7 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["*"]
     },
     "types": [
       "node"
@@ -33,11 +36,11 @@
     ]
   },
   "include": [
+    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "next-env.d.ts",
-    ".next/types/**/*.ts",
-    "types/**/*.d.ts"
+    "src/types",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
